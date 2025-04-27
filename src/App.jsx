@@ -30,17 +30,19 @@ function App() {
   };
 
   const handleRwd = () => {
-    videoRef.current.currentTime = Math.max(
-      0,
-      videoRef.current.currentTime - 10
-    );
+    videoRef.current.currentTime -= 3;
   };
 
   const handleFwd = () => {
-    videoRef.current.currentTime = Math.min(
-      videoRef.current.duration,
-      videoRef.current.currentTime + 10
-    );
+    videoRef.current.currentTime += 3;
+    if (
+      videoRef.current.currentTime >= videoRef.current.duration ||
+      videoRef.current.paused
+    ) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setIsPlaying(false);
+    }
   };
 
   const handleTimeUpdate = () => {
