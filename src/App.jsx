@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import VideoPlayer from "./components/VideoPlayer";
+import VideoControls from "./components/VideoControls";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -53,46 +55,15 @@ function App() {
     <>
       <p>Reactでの実装</p>
       <section className="player">
-        <video
-          ref={videoRef}
-          onTimeUpdate={handleTimeUpdate}
-          className="w-[600px]"
-        >
-          <source src="/src/assets/dog2.mp4" type="video/mp4" />
-          <source src="/src/assets/dog2.webm" type="video/webm" />
-          <p>
-            このブラウザーは HTML の映像に対応していません。 代わりの
-            <a href="rabbit320.mp4">映像へのリンク</a>はこちら。
-          </p>
-        </video>
-
-        <div className="controls mt-3 flex items-center gap-2">
-          <button
-            onClick={handlePlayPause}
-            className="playpause text-white bg-black px-2 py-1.5 rounded-2xl text-[16px] hover:opacity-70"
-          >
-            {isPlaying ? "一時停止" : "再生"}
-          </button>
-          <button
-            onClick={handleStop}
-            className="stop text-white bg-black px-2 py-1.5 rounded-2xl text-[16px] hover:opacity-70"
-          >
-            停止
-          </button>
-          <button
-            onClick={handleRwd}
-            className="rwd text-white bg-black px-2 py-1.5 rounded-2xl text-[16px] hover:opacity-70"
-          >
-            巻き戻し
-          </button>
-          <button
-            onClick={handleFwd}
-            className="fwd text-white bg-black px-2 py-1.5 rounded-2xl text-[16px] hover:opacity-70"
-          >
-            早送り
-          </button>
-          <div className="time">{currentTime}</div>
-        </div>
+        <VideoPlayer videoRef={videoRef} onTimeUpdate={handleTimeUpdate} />
+        <VideoControls
+          isPlaying={isPlaying}
+          currentTime={currentTime}
+          onPlayPause={handlePlayPause}
+          onStop={handleStop}
+          onRwd={handleRwd}
+          onFwd={handleFwd}
+        />
       </section>
     </>
   );
