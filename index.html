@@ -7,6 +7,27 @@
     <title>Vite + React</title>
   </head>
   <body>
+    <section class="player">
+      <video controls>
+        <source src="rabbit320.mp4" type="video/mp4" />
+        <source src="/src/assets/rabbit320.mp4" type="video/webm" />
+        <p>
+          このブラウザーは HTML の映像に対応していません。 代わりの<a
+            href="rabbit320.mp4"
+            >映像へのリンク</a
+          >はこちら。
+        </p>
+      </video>
+
+      <div class="controls">
+        <button class="playpause">再生</button>
+        <button class="stop">停止</button>
+        <button class="rwd">巻き戻し</button>
+        <button class="fwd">早送り</button>
+        <div class="time">00:00</div>
+      </div>
+    </section>
+    <script type="module" src="src/js/custom-controls.js"></script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
